@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<catalog region="BC Coast Mountains" version="1.0">
+
+    <sections>
+        <section name="North Shore Mountains">
+            <area name="Golden Ears">
+                <trip name="Viewpoint Trail" difficulty="D1" snow-factor="S1" distance="4.5 km" elevation="260 m" time="2.5 hr">
+                    <assets>https://sites.google.com/site/hikeswithaview/bc-coast-mountains/north-shore/golden-ears/viewpoint-trail.hwv></assets>
+                </trip>
+
+            </area>
+        </section>
+
+        <section name="Sea-to-Sky">
+
+            <area name="Lions Bay">
+                <trips>
+                    <trip name="Mt. Harvey" difficulty="D5" snow-factor="S4" distance="13 km" elevation="1400 m" time="7-8 hr" LAT="49.47545" LONG="-123.20">
+                        <assets>https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/lions-bay/harvey"</assets>
+                    </trip>
+                </trips>
+
+            </area>
+        </section>
+
+        <section name="Squamish to Whistler">
+
+        </section>
+    </sections>
+
+
+</catalog>

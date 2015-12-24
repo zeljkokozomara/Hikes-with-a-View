@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<images>
+
+    <img1>
+        <file>harvey1.jpg</file>
+        <caption>Sunset over Howe Sound from viewpoint near 1000m elevation</caption>
+    </img1>
+
+    <img2>
+        <file>harvey2.jpg</file>
+        <caption>Surprise view of Lions at start of Harvey ridge</caption>
+    </img2>
+
+    <img3>
+        <file>harvey3.jpg</file>
+        <caption>Approaching final summit block of Mt. Harvey</caption>
+    </img3>
+
+    <img4>
+        <file>harvey4.jpg</file>
+        <caption>Summit view of Howe Sound Crest from Lions to Harvey Pass</caption>
+    </img4>
+
+</images>

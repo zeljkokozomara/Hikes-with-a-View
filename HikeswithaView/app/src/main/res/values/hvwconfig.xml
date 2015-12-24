@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Overall trip difficulty enumeration -->
+    <array name="difficulty">
+        <item name="url">https://sites.google.com/site/hikeswithaview/difficulty/ratings.xml</item>
+        <item name="dirty">https://sites.google.com/site/hikeswithaview/difficulty/dirty</item>
+    </array>
+
+
+    <!-- snow factor enumeration -->
+    <array name="snow_factor">
+        <item name="url">https://sites.google.com/site/hikeswithaview/snow-factor/ratings.xml</item>
+        <item name="dirty">https://sites.google.com/site/hikeswithaview/difficulty/dirty</item>
+    </array>
+
+
+    <!-- regions. Each region has its own catalogue -->
+    <array name="regions">
+        <item name="url">https://sites.google.com/site/hikeswithaview/regions/regions.xml</item>
+        <item name="dirty">https://sites.google.com/site/hikeswithaview/regions/dirty</item>
+    </array>
+
+</resources>

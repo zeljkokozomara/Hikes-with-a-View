@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ratings>
+    <rating>
+       <code>S1</code>
+       <description>
+           Front country or low elevation trail without snow accumulation. Snowshoes not required
+       </description>
+    </rating>
+
+    <rating>
+        <code>S2</code>
+        <description>
+            Easy snowshoe on mainly flat and maintained trail. No avalanche danger.
+        </description>
+    </rating>
+
+    <rating>
+        <code>S3</code>
+        <description>
+            Moderate snowshoe. Trail is marked most of the way. Steep sections might be present bellow treeline. Ice-axe generally not required
+        </description>
+    </rating>
+
+    <rating>
+        <code>S4</code>
+        <description>
+            Difficult trip with plenty of steep sections. Portions might be above treeline on steep slopes where ice-axe and knowledge of self-arrest might be required.
+        </description>
+    </rating>
+
+    <rating>
+        <code>S5</code>
+        <description>
+            Advanced trip, reserved only for fit individuals experienced in winter travel. Extended steep sections. Open slopes above treeline with considerable avalanche danger. Markings might be poor or non absent. Ice-axe and knowledge of self-arrest technique is mandatory
+        </description>
+    </rating>
+
+</ratings>

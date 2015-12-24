@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This file contains only tag names for xml files we are parsing
+     No OTHER constants should ever go here -->
+<resources>
+
+    <!-- Difficulty ratings -->
+    <string name="dr_docelem">ratings</string>
+    <string name="dr_entry">rating</string>
+    <string name="dr_code">code</string>
+    <string name="dr_description">description</string>
+
+    <!-- Snow factor -->
+    <string name="sf_docelem">ratings</string>
+    <string name="sf_entry">rating</string>
+    <string name="sf_code">code</string>
+    <string name="sf_description">description</string>
+
+    <!-- Regions -->
+    <string name="rg_docelem">regions</string>
+    <string name="rg_entry">region</string>
+    <string name="rg_name">name</string>
+    <string name="rg_root">root</string>
+
+    <!-- Catalog -->
+</resources>

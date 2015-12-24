@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ratings>
+    <rating>
+       <code>D1</code>
+       <description>
+           An easy hike on wide and maintained trail. 2-3 hours of average hiking time and less than 100m of elevation gain. Suitable for families
+       </description>
+    </rating>
+
+    <rating>
+        <code>D2</code>
+        <description>
+            Easy to moderate half-day hike on established trail. No more than 5 hours of average hiking time. Gentle gradient, rolling terrain and less than 500m of elevation gain
+        </description>
+    </rating>
+
+    <rating>
+        <code>D3</code>
+        <description>
+            Moderate day-hike on established trail. 5-7 hours of average hiking time. Moderate gradient, occasional steep and/or rough sections.  Less than 1000m of elevation gain
+        </description>
+    </rating>
+
+    <rating>
+        <code>D4</code>
+        <description>
+            Difficult day-hike or backpack into less traveled areas. More than 7 hours of average hiking time. Extended steep and/or rough sections, possible bushwhack and off-trail travel.  Cumulative elevation gain might exceed 1000m
+        </description>
+    </rating>
+
+    <rating>
+        <code>D5</code>
+        <description>
+            Easy Scramble,  technical crux not harder than class 2 YDS
+        </description>
+    </rating>
+
+    <rating>
+        <code>D6</code>
+        <description>
+            Moderate Scramble, technical crux not harder than class 3 YDS
+        </description>
+    </rating>
+
+    <rating>
+        <code>D7</code>
+        <description>
+            Difficult Scramble, technical crux not harder than class 4 YDS
+        </description>
+    </rating>
+</ratings>

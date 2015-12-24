@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Regions XML file; each region has its own catalogue.
+     Root string points to URL so everything is relative & can be changed on the fly
+     without modifying the main app -->
+<regions>
+   <region>
+       <name>BC Coast Mountains</name>
+       <root>https://sites.google.com/site/hikeswithaview/bc-coast-mountains</root>
+   </region>
+
+    <region>
+        <name>Canadian Rockies</name>
+        <root>https://sites.google.com/site/hikeswithaview/canadian-rockies</root>
+    </region>
+
+</regions>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assets trip="harvey">
+
+    <!-- description: Trip notes. Must always exist -->
+    <description file="harvey_notes.xml"/>
+
+    <!-- garmin.gpx: optional. We don't parse this one -->
+    <garmin file="harvey.gpx"/>
+
+    <!-- GPS data for our app processing: optional, but present most of the time -->
+    <gps file="harvey_gps.xml"/>
+
+    <!-- Trip photos. Not mandatory, but must trips should have at least 1 photo -->
+    <photos file="harvey_photos.xml"/>
+
+</assets>

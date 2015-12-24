@@ -1,0 +1,9 @@
+NVW Startup
+============
+
+1) Must verify Google Services API is installed
+2) Must verify Permissions for Location API
+   -- if not granted, use tabular (lists)
+   -- if granted, but when not available (out of coverage), switch to tabular (lists)
+   
+   
