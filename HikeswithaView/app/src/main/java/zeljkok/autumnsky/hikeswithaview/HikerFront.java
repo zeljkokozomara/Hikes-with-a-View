@@ -27,10 +27,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        com.google.android.gms.location.LocationListener
+        com.google.android.gms.location.LocationListener, IAssetStatus
 {
 
-    public static final String HIKER_FRONT_TAG = "HikeswithaView.HikerFront";
+    public static final String HIKER_FRONT_TAG = "HWV.HikerFront";
 
 
     private GoogleMap mMap = null;
@@ -47,10 +47,21 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiker_front);
 
-        checkPermissions();
+        /*checkPermissions();
 
         getMap();
-        getLocation();
+        getLocation(); */
+
+        TripPack tp = new TripPack ();
+
+        try
+        {
+            tp.load(this, "harvey", "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/lions-bay/harvey", this);
+        }
+        catch (Exception ex)
+        {
+           Log.e(HIKER_FRONT_TAG, "Exception thrown while trying to load harvey trip. Cause: " + ex.getLocalizedMessage() );
+        }
     }
 
 
@@ -185,6 +196,13 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    // callback when asset has been loaded. If successful, we have data &
+    // start new activity / asset viewer
+    public void onAssetComplete (int status, String assetName, HWVAsset.AssetType type)
+    {
+
     }
 
 }

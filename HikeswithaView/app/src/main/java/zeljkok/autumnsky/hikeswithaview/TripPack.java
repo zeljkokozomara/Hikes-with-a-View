@@ -11,67 +11,75 @@ import java.util.List;
 /**
  *  Represents single trip. Knows how to load itself from network
   */
-public class TripPack
+public class TripPack implements IAssetDownload
 {
-    public static final String TRIP_PACK_TAG = "HikeswithaView.TripPack";
+    // standard tag for logging
+    public static final String TRIP_PACK_TAG = "HWV.TripPack";
 
-    protected TripNotes  mNotes  = new TripNotes(); // trip description is mandatory
-    protected TripGps    mGps    = null;            // GPS is optional
-    protected TripPhotos mPhotos = null;            // photos are optional
+    private TripNotes  mNotes  = new TripNotes(); // trip description is mandatory
+    private TripGps    mGps    = null;            // GPS is optional
+    private TripPhotos mPhotos = null;            // photos are optional
 
-    protected String     mGarmin = null;            // garmin.gpx is optional; in either case we don't parse it
+    private String     mGarmin = null;            // garmin.gpx is optional; in either case we don't parse it
 
-    protected String mAssetFile;   // local asset file, fetched from URL or internal cache
-    protected String mTripName;    // trip name, passed from caller as read from catalog and verified in assets
+    private String     mTripName = null;          // trip is asset, as passed from the client
+    private HWVAsset   mTripAsset = null;
 
+    private IAssetStatus mClientCallback = null;
 
     // public export to load hike asset. URL is passed from client, as extracted
     // from catalog.  This routine checks against local cache; if file is here & not changed
     // cached version is used.  Cache is always tar-ed and gziped;  extracted files are
     // valid only during lifetime of this object
-    public void load(Context context, String tripName, String strAssetURL) throws IOException
+    public void load(Context context, String tripName, String strAssetURL, IAssetStatus callback)
     {
-        File root = context.getFilesDir();
-        Log.d(TRIP_PACK_TAG, "Root Internal storage: " + root.getAbsolutePath());
+        mClientCallback = callback;
 
-        String tripfolder = root.getAbsolutePath() + File.separator + tripName;
-        Log.d(TRIP_PACK_TAG, "Trip Path: " + tripfolder);
+        mTripName = new String(tripName);
+        mTripAsset = new HWVAsset(context, tripName, HWVAsset.AssetType.TRIP);
 
-        // enumerate folders in root
-        int iTrips = 0;
-        File cached = null;
-        for (File entry: root.listFiles() )
+        // ensure we have asset folder
+        try
         {
-            Log.d(TRIP_PACK_TAG, "Trip Folder: " + entry.getName() );
-            iTrips++;
-
-            if (entry.getName().equalsIgnoreCase(tripName) == true)
-            {
-                cached = entry;
-                Log.d(TRIP_PACK_TAG, "Trip name: " + tripName + " cached before!");
-            }
+            mTripAsset.handleFolderCreation();
+        }
+        catch (Exception ex)
+        {
+            Log.e(TRIP_PACK_TAG, "Exception thrown while accessing local trip folder. Cause: " + ex.getLocalizedMessage() );
+            mClientCallback.onAssetComplete(HWVConstants.HWV_ERR_FILE_IO, mTripName, HWVAsset.AssetType.TRIP);
         }
 
-        if (null == cached) handleFolderCreation (iTrips, tripfolder);
-
+        // fetch hwv file; we will be notified async on success. We
+        // report back to the client only when all downloading/unzipping/xml parsing has completed
+        mTripAsset.handleAssetDownload(strAssetURL, this);
 
     }
 
 
-    protected void handleFolderCreation (int iTrips, String tripfolder)
+    // this helper unzips hwv file and returns assets.xml
+    private File unzipAssets (File hwvFile)
     {
-        // TODO: if we are at the limit, delete oldest before we create new one
-        if (iTrips >= HWVConstants.NUM_PERSISTED_TRIPS)
-        {
+        File assetFile = null;
 
-        }
-
-        // now create folder
-        File tf = new File(tripfolder);
-        tf.mkdir();
+        return assetFile;
     }
-    protected void unzipAssets ()
-    {
 
+
+    public void onDownloadComplete (File hwvFile, int status)
+    {
+        // if failure, just propagate to client. If successful,
+        // we have to unzip then parse all the XMLs
+        if (status != HWVConstants.HWV_SUCCESS)
+             mClientCallback.onAssetComplete(status, mTripName, HWVAsset.AssetType.TRIP);
+
+        // unzip hwv file
+        File assetFile = unzipAssets (hwvFile);
+
+        // now parse asset XML file
+
+        // ask contained helper objects to parse gps, photos, and notes files
+
+        // we are done -- trip is loaded!
+        mClientCallback.onAssetComplete(HWVConstants.HWV_SUCCESS, mTripName, HWVAsset.AssetType.TRIP);
     }
 }

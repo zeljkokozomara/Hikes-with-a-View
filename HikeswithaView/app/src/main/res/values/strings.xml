@@ -2,4 +2,10 @@
     <string name="app_name">Hikes with a View</string>
     <string name="title_activity_hiker_front">Hikes with a View</string>
 
+    <string name="progress_update_download">Checking for new version...</string>
+    <string name="progress_trip_download">Downloading Trip Data...</string>
+    <string name="progress_catalog_download">Updating Trip Catalog...</string>
+    <string name="progress_regions_download">Updating Hiking Regions...</string>
+    <string name="progress_difficulty_download">Updating Difficulty Ratings...</string>
+    <string name="progress_snow_factor_download">Updating Snow Ratings...</string>
 </resources>

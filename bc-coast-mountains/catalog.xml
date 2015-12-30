@@ -17,7 +17,7 @@
 
             <area name="Lions Bay">
                 <trips>
-                    <trip name="Mt. Harvey" difficulty="D5" snow-factor="S4" distance="13 km" elevation="1400 m" time="7-8 hr" LAT="49.47545" LONG="-123.20">
+                    <trip name="harvey" caption="Mt. Harvey" difficulty="D5" snow-factor="S4" distance="13 km" elevation="1400 m" time="7-8 hr" LAT="49.47545" LONG="-123.20">
                         <assets>https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/lions-bay/harvey"</assets>
                     </trip>
                 </trips>
