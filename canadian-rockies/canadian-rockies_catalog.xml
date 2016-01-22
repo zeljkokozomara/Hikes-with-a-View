@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<catalog region="Canadian Rockies" version="1.0">
+
+    <sections>
+
+        <section name="Kananaskis Country">
+            <area name="Canmore">
+                <trips>
+                    <trip name="pigeon" caption="Pigeon Mountain" difficulty="D4" distance="17 km" elevation="1000 m" time="7 hr" LAT="N51° 01.709'" LONG="W115° 12.391'"">
+                        <assets>canadian-rockies/kananaskis-country/canmore/pigeon-mountain"</assets>
+                    </trip>
+                </trips>
+
+            </area>
+        </section>
+
+        <section name="Banff-Louise">
+            <area name="Castle Junction">
+                <trips>
+                    <trip name="boomlake" caption="Boom Lake" difficulty="D2" distance="10.5 km" elevation="250 m" time="3 hr" LAT="N51° 15.799'" LONG=" W116° 05.017'">
+                        <assets>canadian-rockies/banff-louise/castle-junction/boom-lake"</assets>
+                    </trip>
+                </trips>
+
+            </area>
+        </section>
+
+
+    </sections>
+
+
+</catalog>

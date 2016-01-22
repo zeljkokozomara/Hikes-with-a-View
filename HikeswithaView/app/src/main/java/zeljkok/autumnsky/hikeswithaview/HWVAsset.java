@@ -21,7 +21,7 @@ public class HWVAsset implements IAssetDownload
 
     public enum AssetType
     {
-        REGIONS, CATALOG, TRIP, DIFFICULTY, SNOW_FACTOR
+        REGION, CATALOG, TRIP, RATING
     };
 
     private IAssetDownload  mClientCallback = null;
@@ -40,38 +40,21 @@ public class HWVAsset implements IAssetDownload
     String                  mUpdateLocal = null;      // read from local update file for this asset
     private boolean         mDownloadAsset = false;   // flag indicating if we need to download asset based on update file
 
-    static String AssetExtension (AssetType type)
-    {
-        String extension = null;
-
-        if (type == AssetType.TRIP)
-            extension = new String (HWVConstants.HWV_FILE_EXTENSION);
-
-        else
-            extension = new String(HWVConstants.XML_FILE_EXTENSION);
-
-
-        return extension;
-    }
-
     static String AssetSuffix (AssetType type)
     {
         String suffix = null;
 
         if (type == AssetType.CATALOG)
-            suffix = new String(HWVConstants.HWV_CATALOG_SUFFIX);
+            suffix = new String(HWVConstants.HWV_CATALOGS_SUFFIX);
 
         else if (type == AssetType.TRIP)
-            suffix = new String (HWVConstants.HWV_TRIP_SUFFIX);
+            suffix = new String (HWVConstants.HWV_TRIPS_SUFFIX);
 
-        else if (type == AssetType.DIFFICULTY)
-            suffix = new String (HWVConstants.HWV_DIFFICULTY_SUFFIX);
+        else if (type == AssetType.RATING)
+            suffix = new String (HWVConstants.HWV_RATINGS_SUFFIX);
 
-        else if (type == AssetType.REGIONS)
+        else if (type == AssetType.REGION)
             suffix = new String (HWVConstants.HWV_REGIONS_SUFFIX);
-
-        else if (type == AssetType.SNOW_FACTOR)
-            suffix = new String (HWVConstants.HWV_SNOW_FACTOR_SUFFIX);
 
         else assert false : type;
 
@@ -88,14 +71,11 @@ public class HWVAsset implements IAssetDownload
         else if (type == AssetType.TRIP)
             msgid = R.string.progress_trip_download;
 
-        else if (type == AssetType.DIFFICULTY)
-            msgid = R.string.progress_difficulty_download;
+        else if (type == AssetType.RATING)
+            msgid = R.string.progress_ratings_download;
 
-        else if (type == AssetType.REGIONS)
+        else if (type == AssetType.REGION)
             msgid = R.string.progress_regions_download;
-
-        else if (type == AssetType.SNOW_FACTOR)
-            msgid = R.string.progress_snow_factor_download;
 
         else assert false : type;
 
@@ -115,9 +95,8 @@ public class HWVAsset implements IAssetDownload
         if (mAssetFolder.exists() == false)
             mAssetFolder.mkdir();
 
-        if (mType != AssetType.TRIP) return mAssetFolder;
 
-        // if asset type is trip, we have to do extra work. Up to HWVConstants.NUM_PERSISTED_ASSETS subfolders
+        // Up to HWVConstants.NUM_PERSISTED_ASSETS subfolders
         assetpath = mAssetFolder.getAbsolutePath() + File.separator + mAssetName;
         Log.d(HWV_ASSET_TAG, "Trip asset Path: " + assetpath);
 
@@ -163,7 +142,7 @@ public class HWVAsset implements IAssetDownload
         return assetFolder;
     }
 
-    public void handleAssetDownload (String assetURL, IAssetDownload callback)
+    public File handleAssetDownload (String assetURL, boolean checkUpdate, IAssetDownload callback)
     {
         mClientCallback = callback;
         mAssetURL = assetURL;
@@ -171,85 +150,120 @@ public class HWVAsset implements IAssetDownload
         if (mAssetURL.endsWith("/") == false)
             mAssetURL += "/";
 
-
+        String hwvfile  = new String(mAssetFolder.getAbsolutePath() +
+                File.separator + mAssetName + HWVConstants.HWV_FILE_EXTENSION);
         String updatefile = new String(mAssetFolder.getAbsolutePath() + File.separator + HWVConstants.UPDATE_FILE_NAME);
-
         String updateURL = mAssetURL + HWVConstants.UPDATE_FILE_NAME;
         mDownloadAsset = false;
 
-        try   // this one will throw if it doesn't exist (i.e. 1st time, or has been recycled)
+        File assetFile = new File(mAssetFolder.getAbsolutePath() + File.separator +
+                HWVConstants.ASSETS_FILE_NAME + HWVConstants.XML_FILE_EXTENSION );
+
+        if (assetFile.exists() == false) mDownloadAsset = true;
+
+        if (checkUpdate == true)
         {
-            mUpdateLocal = HWVUtilities.readFile(updatefile);
+            try   // this one will throw if it doesn't exist (i.e. 1st time, or has been recycled)
+            {
+                mUpdateLocal = HWVUtilities.readFile(updatefile);
+            }
+            catch (Exception ex)
+            {
+                Log.d(HWV_ASSET_TAG, "Exception thrown while trying to read update file for asset: " + mAssetName +
+                        "Reason: " + ex.getLocalizedMessage());
+
+                mDownloadAsset = true;
+            }
+
+            // download update in each case when update flag is set
+            DownloadTask downloader = new DownloadTask();
+
+            downloader.mParams.mCallback = this;
+            downloader.mParams.mOutPath = updatefile;
+            downloader.mParams.mContext = mContext;
+            downloader.mParams.mMessageId = R.string.progress_update_download;
+            downloader.mParams.mZipped = false;   // update file is never zipped
+
+            mDownloadState = DownloadState.UPDATE;
+            downloader.execute(updateURL);
+
+            return null;
         }
-        catch (Exception ex)
+
+        // if here, update flag was not set. If we don't have asset file, trigger its download
+        if (mDownloadAsset == true)
         {
-            Log.d(HWV_ASSET_TAG, "Exception thrown while trying to read update file for asset: " + mAssetName +
-                    "Reason: " + ex.getLocalizedMessage() );
+            DownloadTask downloader = new DownloadTask();
 
-            mDownloadAsset = true;
+            downloader.mParams.mCallback  = this;
+            downloader.mParams.mOutPath   = hwvfile;
+            downloader.mParams.mContext   = mContext;
+            downloader.mParams.mMessageId = HWVAsset.AssetMessage(mType);
+            downloader.mParams.mZipped    = true;
+
+            mDownloadState = DownloadState.ASSET;
+            downloader.execute(mAssetURL + mAssetName + HWVConstants.HWV_FILE_EXTENSION );
+
+            return null;
         }
 
-        // if we had update file, check if we have asset file. If not, must set that flag anyways
-        if (mDownloadAsset == false)
-        {
-            File assetFile = new File(mAssetFolder.getAbsolutePath() + File.separator +
-                 mAssetName + HWVAsset.AssetExtension(mType) );
-
-            if (assetFile.exists() == false) mDownloadAsset = true;
-
-        }
-        // download new update file in each case. If we couldn't read existing one
-        // we keep it for next time
-        DownloadTask downloader = new DownloadTask();
-
-        downloader.mParams.mCallback = this;
-        downloader.mParams.mOutPath  = updatefile;
-        downloader.mParams.mContext  = mContext;
-        downloader.mParams.mMessageId = R.string.progress_update_download;
-
-        mDownloadState = DownloadState.UPDATE;
-        downloader.execute(updateURL);
-
+        // finally if here, asset file was cached & we were not asked to check update file
+        return assetFile;
     }
 
     // at this level we ensure we have up-to-date asset file
     // main purpose is to abstract all "update" handling from higher layers
     public void onDownloadComplete     (File assetPath,   int status)
     {
+        // If download failed (regardless if it is update of HWV), just throw back an error
         if (status != HWVConstants.HWV_SUCCESS)
         {
             Log.e(HWV_ASSET_TAG, "Asset download failure");
-            mClientCallback.onDownloadComplete(assetPath, status);
+            mClientCallback.onDownloadComplete(null, status);
 
             return;
         }
 
-        // If we were downloading asset, we are done
+        // If we were downloading HWV file, unpack it
         if (mDownloadState == HWVAsset.DownloadState.ASSET)
         {
-            mClientCallback.onDownloadComplete(assetPath, status);
+            File assetFile = null;
+            try
+            {
+                assetFile = HWVUtilities.unpackAssets(assetPath);
+            }
+            catch (Exception ex)
+            {
+                Log.e(HWV_ASSET_TAG, "Exception thrown while upacking HWV file. Cause: " + ex.getLocalizedMessage() );
+                mClientCallback.onDownloadComplete(null, HWVConstants.HWV_ERR_UNPACK);
+
+                return;
+            }
+
+            mClientCallback.onDownloadComplete(assetFile, status);
             return;
         }
 
-        String assetfile  = new String(mAssetFolder.getAbsolutePath() +
-                File.separator + mAssetName + HWVAsset.AssetExtension(mType) );
+        // if here, we were downloading update file
+        String hwvfile  = new String(mAssetFolder.getAbsolutePath() +
+                File.separator + mAssetName + HWVConstants.HWV_FILE_EXTENSION);
         String updatefile = new String(mAssetFolder.getAbsolutePath() + File.separator + HWVConstants.UPDATE_FILE_NAME);
 
-        // here we are dealing with downloaded update string. First check if flag
-        // to download asset at any case was set
+        // first check if download asset flag was set
         if (mDownloadAsset == true)
         {
             Log.d(HWV_ASSET_TAG, "Downloading asset: " + mAssetName + " from URL: " + mAssetURL);
 
             DownloadTask downloader = new DownloadTask();
 
-            downloader.mParams.mCallback = this;
-            downloader.mParams.mOutPath  = assetfile;
-            downloader.mParams.mContext  = mContext;
+            downloader.mParams.mCallback  = this;
+            downloader.mParams.mOutPath   = hwvfile;
+            downloader.mParams.mContext   = mContext;
             downloader.mParams.mMessageId = HWVAsset.AssetMessage(mType);
+            downloader.mParams.mZipped    = true;
 
             mDownloadState = DownloadState.ASSET;
-            downloader.execute(mAssetURL + mAssetName + HWVAsset.AssetExtension(mType) );
+            downloader.execute(mAssetURL + mAssetName + HWVConstants.HWV_FILE_EXTENSION );
 
             return;
         }
@@ -268,15 +282,25 @@ public class HWVAsset implements IAssetDownload
 
             // treat this as unrecoverable error for now, as we could not read file
             // we just downloaded!
-            mClientCallback.onDownloadComplete(assetPath, HWVConstants.HWV_ERR_FILE_IO);
+            mClientCallback.onDownloadComplete(null, HWVConstants.HWV_ERR_FILE_IO);
 
             return;
 
         }
 
+        // if update strings are identical, return asset xml file. At this stage
+        // we MUST have it
         if (strUpdateFromURL.equalsIgnoreCase(mUpdateLocal ))
         {
-            mClientCallback.onDownloadComplete(new File(assetfile), HWVConstants.HWV_SUCCESS);
+            File assetFile = new File(mAssetFolder.getAbsolutePath() + File.separator +
+                    HWVConstants.ASSETS_FILE_NAME + HWVConstants.XML_FILE_EXTENSION );
+
+            if (assetFile.exists() == false)
+            {
+                if (!false) throw new AssertionError(assetFile);
+            }
+
+            mClientCallback.onDownloadComplete(assetFile, HWVConstants.HWV_SUCCESS);
             return;
 
         }
@@ -284,13 +308,14 @@ public class HWVAsset implements IAssetDownload
         // finally here we must download new asset file because cached is dated
         DownloadTask downloader = new DownloadTask();
 
-        downloader.mParams.mCallback = this;
-        downloader.mParams.mOutPath  = assetfile;
-        downloader.mParams.mContext  = mContext;
+        downloader.mParams.mCallback  = this;
+        downloader.mParams.mOutPath   = hwvfile;
+        downloader.mParams.mContext   = mContext;
         downloader.mParams.mMessageId = HWVAsset.AssetMessage(mType);
+        downloader.mParams.mZipped    = true;
 
         mDownloadState = DownloadState.ASSET;
-        downloader.execute(mAssetURL + mAssetName + HWVAsset.AssetExtension(mType) );
+        downloader.execute(mAssetURL + mAssetName + HWVConstants.HWV_FILE_EXTENSION );
 
     }
 }

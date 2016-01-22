@@ -1,5 +1,8 @@
 package zeljkok.autumnsky.hikeswithaview;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -7,5 +10,5 @@ import java.io.IOException;
  */
 public interface ITripData
 {
-    public void loadFromXML (String strPath)  throws IOException;
+    public void loadFromXML(File tripData) throws XmlPullParserException, IOException;
 }

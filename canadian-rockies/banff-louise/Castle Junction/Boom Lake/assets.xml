@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assets trip="boomlake">
+
+    <!-- description: Trip notes. Must always exist -->
+    <description file="boomlake_notes.xml"/>
+
+    <!-- garmin.gpx: optional. We don't parse this one -->
+    <garmin file="boomlake.gpx"/>
+
+    <!-- GPS data for our app processing: optional, but present most of the time -->
+    <gps file="boomlake_gps.xml"/>
+
+    <!-- Trip photos. Not mandatory, but must trips should have at least 1 photo -->
+    <photos file="boomlake_photos.xml"/>
+
+</assets>

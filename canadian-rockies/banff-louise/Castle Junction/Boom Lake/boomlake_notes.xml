@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<description trip="boomlake" caption="Boom Lake">
+ 
+<abstract>
+
+<difficulty>
+   <rating>D2</rating>
+   <text>Gentle trail hiking to the lake.  More challenging continuing across boulders and around small bays on north side</text>
+</difficulty>
+
+<trail>
+   <rating>T1</rating>
+   <text>Official wide park trail. All junctions are marked with signposts. Much more difficult continuing on north side of the lake (T3) or ascending Mt. Bell (T4)</text>
+</trail>
+
+<snow-factor>
+   <rating>S2</rating>
+   <text>Trail is below treeline and avalanche risk low. Possibility of minor deadfall</text>
+</snow-factor>
+
+<scenery>
+Beautiful and large back-country lake. Great views of Mt. Bell, Boom and Bident/Quadra from Moraine group
+</scenery>
+
+
+
+<time>
+   <value>3 hr</value>
+   <text>Return time in relaxed pace to the end of marked trail. Add 1-2 hours for further exploration or full day for optional Kane scramble up Mt. Bell</text>
+</time>
+
+<elevation start="1730 m" max="1920 m" total="250 m"/>
+<distance>10.5 km (to the lake)</distance>
+
+<gear>
+Light hikers are sufficient. Snowshoes or skis (recommended) in winter
+</gear>
+
+<water>
+Lake water and small strams, but no reliable source. Take 1L
+</water>
+
+<dog>
+    <value>Yes</value>
+    <text>Please keep dogs on leash as this is very popular trail</text>
+</dog>
+
+</abstract>
+
+<summary>
+   Boom lake is one of most accessible back-country lakes along the Banff-Radium corridor. Trailhead is at the right (north) side of Hwy 93, some 10 minutes from the Castle Junction.  Fairly large parking lot fills fast in summer months.
+   From the kiosk trail crosses bridge and turns left heading for cirque tucked between Mt. Bell to the north and Mt. Boom to the south. Most of the trail is under tree cover so views are limited, but forest is pleasant and travel easy.
+   Trail initially gains elevation, then after signed junction with Taylor lake (about 30-40 mins from the start) stays mostly level. Final part gently descends to east end of Boom lake near the large rock slide.
+   In winter recommended option is to ski up on normally broken and consolidated trail, shared both with snowshoers and hikers.  This is one of trips described in excellent Chic Scott guidebook "Ski Trails in the Canadian Rockies".
+   Real benefit of winter trip is opportunity to cross frozen lake on skis -- much easier than booting or snow-shoeing as you just glide across!  Takes about 30-40 minutes (~2 km, 1 way) to ski to west end of the lake.
+   Neat icefall at bottom of avalanche gully directly below Mt. Bell is a must see! Beginner skiers might find first third of the trail fairly challenging on return as it is fairly steep with one sharp curve (near the trailhead).
+</summary>
+
+<photo-corner>
+   Morning light is preferable. In winter sun is low on horizon and cirque is in shade from early afternoon.
+</photo-corner>
+
+<going-further>
+   Several options exist from end of hiking trail. Scramblers can head up large avalanche gully on north side - alternate Kane approach for Mt. Bell.
+   Rudimentary trail exists on north side of the lake, but deteriorates into thickets of bush and awkward side-hilling around small bays. Remnants of primitive camp sites and old firepits can sometimes be found here.
+   In winter experienced back-country skiers sometimes cross over along west flanks of Mt. Boom and descend to Chickadee valley on the other side. This is advanced trip and avalanche conditions must be favorable
+</going-further>
+
+</description>

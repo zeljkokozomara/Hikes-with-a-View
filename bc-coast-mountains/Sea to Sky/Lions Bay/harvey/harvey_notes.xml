@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<description trip="harvey">
+<description trip="harvey" caption="Mt. Harvey">
  
 <abstract>
 
 <difficulty>
    <rating>D5</rating>
-   <text>Steep trail that gains close to 1400 vertical in just over 6km. Final summit block is an easy class 2 scramble in dry conditions</text>
+   <text>Steep ascent that gains close to 1400 vertical in just over 6km. Final summit block is an easy class 2 scramble in dry conditions</text>
 </difficulty>
+
+<trail>
+    <rating>T3</rating>
+    <text>Logging road followed by steep forest trail with cairns and flags. Trail fades in alpine but way is obvious</text>
+</trail>
 
 <snow-factor>
    <rating>S4</rating>

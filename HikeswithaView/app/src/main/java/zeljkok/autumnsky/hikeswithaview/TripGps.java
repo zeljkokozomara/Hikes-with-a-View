@@ -1,5 +1,10 @@
 package zeljkok.autumnsky.hikeswithaview;
 
+import android.content.Context;
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,13 +28,16 @@ public class TripGps implements ITripData
         public String title, caption;
     }
 
+    private Context m_context;
+
     protected List<GpsWaypoint> mWaypoints = new ArrayList<GpsWaypoint>();
     public List<GpsWaypoint> getWaypoins (){return mWaypoints;}
 
-    public void loadFromXML (String strPath)  throws IOException
+    public TripGps(Context c){m_context = c;}
+    public void loadFromXML (File tripData)  throws XmlPullParserException, IOException
     {
         // open gps file input stream
-        InputStream stream = new FileInputStream(strPath);
+        InputStream stream = new FileInputStream(tripData);
 
         // parse gps file
 

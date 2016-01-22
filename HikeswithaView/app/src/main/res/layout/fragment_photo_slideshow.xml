@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
+
+    <ViewFlipper
+        android:id="@+id/tripflipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+    </ViewFlipper>
+
+    <LinearLayout
+        style="@style/flipperButtonContainer"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/flipperplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@android:drawable/ic_media_play" />
+
+        <Button
+            android:id="@+id/flipperstop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_media_pause" />
+    </LinearLayout>
+
+</RelativeLayout>

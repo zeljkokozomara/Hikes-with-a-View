@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Created by zeljkok on 24/12/2015.
@@ -29,6 +30,7 @@ public class DownloadTask extends AsyncTask<String /* Download URL */, Integer /
         public String         mOutPath;
         public int            mMessageId;
         public Context        mContext;
+        public boolean        mZipped;
     }
 
     DownloadParams            mParams = new DownloadParams();    // client must configure. This is just to bypass Java hyper
@@ -64,7 +66,7 @@ public class DownloadTask extends AsyncTask<String /* Download URL */, Integer /
             int fileLength = connection.getContentLength();
 
             // download the file
-            input = connection.getInputStream();
+            input = (mParams.mZipped == true) ? new GZIPInputStream(connection.getInputStream() ) : connection.getInputStream ();
             output = new FileOutputStream(mParams.mOutPath);
 
             byte data[] = new byte[4096];

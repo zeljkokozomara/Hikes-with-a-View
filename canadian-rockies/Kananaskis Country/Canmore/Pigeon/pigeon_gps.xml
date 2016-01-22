@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<gps>
+    <layout>                       <!-- our internal specs how to paint trip on google map -->
+       <center LAT="N51° 01.047'" LONG="W115° 12.854'"/>
+       <zoom>14</zoom>
+       <bearing>90</bearing>
+       <tilt>45</tilt>
+    </layout>
+
+    <waypoints>
+
+        <waypoint LAT="N51° 01.628'" LONG="W115° 14.863'" ALT="1430m" DIST="0km">
+            <title>Skogan Trailhead</title>
+            <caption>Parking near Banff Gate mountain resort. Walk to the powerline and turn left</caption>
+        </waypoint>
+
+        <waypoint LAT="N51° 00.367'" LONG=" W115° 12.416'" ALT="1750m" DIST="4.2km">
+            <title>Road Junction</title>
+            <caption>Unmarked road junction. Turn left onto left fork</caption>
+        </waypoint>
+
+        <waypoint LAT="N51° 00.356'" LONG="W115° 11.959'" ALT="1850m" DIST="5.0km">
+            <title>Pigeon Trailhead</title>
+            <caption>Trail leaves road and heads up next to seasonal area closure sign</caption>
+        </waypoint>
+
+        <waypoint LAT="N51° 01.278'" LONG="W115° 11.812'" ALT="2275m" DIST="7.3km">
+            <title>Pigeon Ridge</title>
+            <caption>Low point of ridge between east and west summits</caption>
+        </waypoint>
+
+        <waypoint LAT="N51° 01.159'" LONG="W115° 11.726'" ALT="2320m" DIST="7.8km">
+            <title>East Summit</title>
+            <caption>Scramble through rockband quickly leads to cairn next to weather station</caption>
+        </waypoint>
+
+        <waypoint LAT="N51° 01.709'" LONG="W115° 12.391'" ALT="2400m" DIST="9.0km">
+            <title>West Summit</title>
+            <caption>Gentle ridgewalk on grass and talus leads to Pigeon mountain</caption>
+        </waypoint>
+
+    </waypoints>
+</gps>

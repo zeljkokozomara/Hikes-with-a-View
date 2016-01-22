@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<catalog region="BC Coast Mountains" version="1.0">
+
+    <sections>
+        <section name="North Shore Mountains">
+            <area name="Golden Ears">
+
+            </area>
+        </section>
+
+        <section name="Sea-to-Sky">
+
+            <area name="Lions Bay">
+                <trips>
+                    <trip name="harvey" caption="Mt. Harvey" difficulty="D5" distance="13 km" elevation="1400 m" time="7-8 hr" LAT="N49° 28.527'" LONG="W123° 12.005'">
+                        <assets>/bc-coast-mountains/sea-to-sky/lions-bay/harvey"</assets>
+                    </trip>
+                </trips>
+
+            </area>
+
+            <area name="Stawamus Country">
+                <trips>
+                    <trip name="stawamus_backside" caption="Stawamus Backside" difficulty="D6" distance="8 km" elevation="850 m" time="5 hr" LAT="N49° 41.163'" LONG="W123° 08.087'">
+                        <assets>bc-coast-mountains/sea-to-sky/stawamus-country/stawamus-backside"</assets>
+                    </trip>
+                </trips>
+
+            </area>
+        </section>
+
+        <section name="Squamish to Whistler">
+
+        </section>
+    </sections>
+
+
+</catalog>

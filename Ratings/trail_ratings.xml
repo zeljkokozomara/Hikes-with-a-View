@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ratings>
+    <rating>
+       <code>T1</code>
+       <description>
+           Wide and well-defined trail, often paved with gentle grade and suitable for families. Official trailhead with all junctions marked with signposts.
+       </description>
+    </rating>
+
+    <rating>
+        <code>T2</code>
+        <description>
+            Trail is well defined with solid footbed and has only minor steep or rough sections. Junctions have cairns or flags.
+        </description>
+    </rating>
+
+    <rating>
+        <code>T3</code>
+        <description>
+            Trail is occasionally narrow and/or poorly defined. Portions are rough and might entail navigating deadfall and/or hopping over rocks. Some junctions might not be marked and trail might fade in the alpine with infrequent flagging.
+         </description>
+    </rating>
+
+    <rating>
+        <code>T4</code>
+        <description>
+            Rough and sometimes very steep trail that frequently dissapears necessitating route-finding. Junctions are often not flagged. Possibility of scramble steps up gullies or rock bluffs, but not harder than class 2
+        </description>
+    </rating>
+
+    <rating>
+        <code>T5</code>
+        <description>
+            Exploratory, off-trail trip reserved only for seasoned explorers. Flags and/or cairns are generally not present. Unbridged stream crossings and heavy bushwhack. Possibility of difficult scrambling (class 3 or above) that might require a rope.
+        </description>
+    </rating>
+
+
+</ratings>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assets type="ratings">
+
+    <!-- Trip Difficulty enumeration -->
+    <difficulty file="difficulty_ratings.xml"/>
+
+    <!-- Trip Difficulty enumeration -->
+    <trail file="trail_ratings.xml"/>
+
+    <!-- garmin.gpx: optional. We don't parse this one -->
+    <snow-factor file="snowfactor_ratings.xml"/>
+
+</assets>

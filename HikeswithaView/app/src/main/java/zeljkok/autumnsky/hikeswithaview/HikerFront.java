@@ -1,11 +1,10 @@
 package zeljkok.autumnsky.hikeswithaview;
 
 import android.Manifest;
-import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -23,6 +22,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 
 public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
@@ -47,20 +48,22 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiker_front);
 
+        TripPack tp = new TripPack(this);
+        HWVContext.getInstance().setCurrentTrip(tp);
         /*checkPermissions();
 
         getMap();
         getLocation(); */
 
-        TripPack tp = new TripPack ();
 
         try
         {
-            tp.load(this, "harvey", "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/lions-bay/harvey", this);
+            tp.load("stawamus_backside", "Stawamus Backside",
+                    "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/stawamus-country/stawamus-backside", this);
         }
         catch (Exception ex)
         {
-           Log.e(HIKER_FRONT_TAG, "Exception thrown while trying to load harvey trip. Cause: " + ex.getLocalizedMessage() );
+           Log.e(HIKER_FRONT_TAG, "Exception thrown while trying to load boomlake trip. Cause: " + ex.getLocalizedMessage() );
         }
     }
 
@@ -68,7 +71,7 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
     @Override
     protected void onStop()
     {
-        mGoogleApiClient.disconnect();
+        //mGoogleApiClient.disconnect();
         super.onStop();
     }
 
@@ -202,6 +205,29 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
     // start new activity / asset viewer
     public void onAssetComplete (int status, String assetName, HWVAsset.AssetType type)
     {
+        // what we want to do here is to launch activity that handles type of asset being retrieved
+        if (status != HWVConstants.HWV_SUCCESS)
+        {
+            Toast.makeText(this, "Asset: " + assetName +
+                    " retrieval complete. Status: " + Integer.toString(status), Toast.LENGTH_LONG).show();
+
+            return;
+        }
+     /*   // debug test
+        TripPack tp = HWVContext.getInstance().getCurrentTrip();
+        TripPhotos mPhotos = tp.getPhotos ();
+        String strPhotos = "Trip Pack retrieval complete! Photo list: ";
+        List<TripPhotos.PhotoTupple> photolist = mPhotos.getPhotos();
+        for (TripPhotos.PhotoTupple pt : photolist)
+        {
+            strPhotos += pt.mPhotoFile.getName();
+            strPhotos += " ";
+        }
+        Toast.makeText(this, strPhotos, Toast.LENGTH_SHORT).show(); */
+
+        Intent intent = new Intent(this, TripViewActivity.class);
+        startActivity(intent);
+
 
     }
 

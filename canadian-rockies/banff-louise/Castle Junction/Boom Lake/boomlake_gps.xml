@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<gps>
+    <layout>                       <!-- our internal specs how to paint trip on google map -->
+       <center LAT="N51° 15.579'" LONG="W116° 03.544'"/>
+       <zoom>14</zoom>
+       <bearing>90</bearing>
+       <tilt>45</tilt>
+    </layout>
+
+    <waypoints>
+        <waypoint LAT="N51° 14.938'" LONG="W116° 01.437'" ALT="1730m" DIST="0km">
+            <title>Boom Lake Trailhead</title>
+            <caption>North side of Hwy93 ~10 mins from Castle Junction</caption>
+        </waypoint>
+
+        <waypoint LAT="N51° 15.799'" LONG=" W116° 05.017'" ALT="1920m" DIST="5.3km">
+            <title>Boom Lake</title>
+            <caption>End of hiking trail near the east end of the lake</caption>
+        </waypoint>
+
+        <waypoint LAT=" N51° 15.909'" LONG="W116° 06.568'" ALT="1920m" DIST="7.2km">
+            <title>West End</title>
+            <caption>Drainage at west end of the lake under Mt. Bident</caption>
+        </waypoint>
+
+
+    </waypoints>
+</gps>

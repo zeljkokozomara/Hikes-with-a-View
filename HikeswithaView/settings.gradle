@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':jtar-1.1'

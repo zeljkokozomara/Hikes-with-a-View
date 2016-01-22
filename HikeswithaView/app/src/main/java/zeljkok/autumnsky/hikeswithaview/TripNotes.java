@@ -1,5 +1,10 @@
 package zeljkok.autumnsky.hikeswithaview;
 
+import android.content.Context;
+
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,8 +38,11 @@ public class TripNotes implements ITripData
         public String mDistance;
     }
 
-    protected TripNotes.Rating  mDifficulty;   // Trip Difficulty
+    private Context m_context = null;
+
+    protected TripNotes.Rating  mDifficulty;   // Overall Trip Difficulty
     protected TripNotes.Rating  mSnowFactor;   // Snow-Factor
+    protected TripNotes.Rating  mTrail;        // Trail Difficulty
 
     protected String            mScenery;      // Scenery description
     protected TripNotes.Rating  mTime;         // Trip time
@@ -49,10 +57,12 @@ public class TripNotes implements ITripData
     protected String            mPhotoCorner;  // photo-corner text; can be empty
     protected String            mGoingFurther; // going further text; can be empty
 
-    public void loadFromXML (String strPath)  throws IOException
+    public TripNotes (Context c){m_context = c;}
+
+    public void loadFromXML (File tripData)    throws XmlPullParserException, IOException
     {
         // open notes.xml input stream
-        InputStream stream = new FileInputStream(strPath);
+        InputStream stream = new FileInputStream(tripData);
 
         // parse notes
 
