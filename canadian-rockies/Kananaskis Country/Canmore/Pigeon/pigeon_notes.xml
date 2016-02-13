@@ -4,18 +4,18 @@
 <abstract>
 
 <difficulty>
-   <rating>D4</rating>
-   <text>Steep ascent on mix of grass and talus ending with gentle ridgewalk.  Optional east (lower) summit is an easy scramble</text>
+   <code>D4</code>
+   <description>Steep ascent on mix of grass and talus ending with gentle ridgewalk.  Optional east (lower) summit is an easy scramble</description>
 </difficulty>
 
 <trail>
-   <rating>T3</rating>
-   <text>Initial logging road walk under powerline with one unmarked junction. Good trail to treeline eventually fades out, but way is obvious</text>
+   <code>T3</code>
+   <description>Initial logging road walk under powerline with one unmarked junction. Good trail to treeline eventually fades out, but way is obvious</description>
 </trail>
 
 <snow-factor>
-   <rating>S3</rating>
-   <text>Ascent slopes are often windswept and do not pose avalanche danger.  Steep sections and some side-sloping</text>
+   <code>S3</code>
+   <description>Ascent slopes are often windswept and do not pose avalanche danger.  Steep sections and some side-sloping</description>
 </snow-factor>
 
 <scenery>
@@ -23,8 +23,8 @@
 </scenery>
 
 <time>
-   <value>6-7 hr</value>
-   <text>Includes visit to both summits.  Travel in winter conditions will be slower - add at least an hour</text>
+   <code>6-7 hr</code>
+   <description>Includes visit to both summits.  Travel in winter conditions will be slower - add at least an hour</description>
 </time>
 
 <elevation start="1430 m" max="2400 m" total="~10000 m"/>
@@ -39,8 +39,8 @@
 </water>
 
 <dog>
-    <value>Yes</value>
-    <text>No on-leash restrictions.  Be on alert for cougars. Large herd of mountain goats makes lower slopes home - please keep control of your pet</text>
+    <code>Yes</code>
+    <description>No on-leash restrictions.  Be on alert for cougars. Large herd of mountain goats makes lower slopes home - please keep control of your pet</description>
 </dog>
 
 </abstract>

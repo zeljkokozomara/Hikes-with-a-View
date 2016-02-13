@@ -1,13 +1,277 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="zeljkok.autumnsky.hikeswithaview.TripViewActivity$PlaceholderFragment">
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+    android:id="@+id/tripabstract_scroller"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:orientation="vertical" >
+
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="0,1"  android:stretchColumns="2" android:background="#ffffffff">
+
+            <!-- Overall difficulty -->
+            <TableRow
+                android:id="@+id/tripfragmentdifficulty"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentdifficulty_label"
+                    android:text="@string/trip_abstract_difficulty"
+                    style="@style/tripAbstractStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmentdifficulty_code"
+                    android:layout_width="wrap_content"
+                    style="@style/RatingStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmentdifficulty_description"
+                    android:layout_width="0dp"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+            <!-- Snow Factor -->
+            <TableRow
+                android:id="@+id/tripfragmentsnowfactor"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentsnowfactor_label"
+                    android:text="@string/trip_abstract_snow_factor"
+                    style="@style/tripAbstractStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmentsnowfactor_code"
+                    android:layout_width="wrap_content"
+                    style="@style/RatingStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmentsnowfactor_description"
+                    android:layout_width="0dp"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+
+        <!-- Trail/Marking -->
+            <TableRow
+                android:id="@+id/tripfragmenttrail"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmenttrail_label"
+                    android:text="@string/trip_abstract_trail"
+                    style="@style/tripAbstractStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmenttrail_code"
+                    android:layout_width="wrap_content"
+                    style="@style/RatingStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmenttrail_description"
+                    android:layout_width="0dp"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
 
 
 
-</RelativeLayout>
+</TableLayout>
+
+        <View style="@style/AbstractLineStyle" />
+
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="0,1"  android:stretchColumns="2" android:background="#ffffffff">
+
+            <!-- Suggested Time -->
+            <TableRow
+                android:id="@+id/tripfragmenttime"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmenttime_label"
+                    android:text="@string/trip_abstract_time"
+                    style="@style/tripAbstractStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmenttime_code"
+                    style="@style/tripAbstractStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmenttime_description"
+                    android:layout_width="0dp"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+   <TableLayout
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:shrinkColumns="0"  android:stretchColumns="1" android:background="#ffffffff">
+
+
+
+       <!-- Elevation -->
+       <TableRow
+           android:id="@+id/tripfragmentelevation"
+           android:layout_height="wrap_content"
+           android:layout_width="fill_parent">
+
+           <TextView
+               android:id="@+id/tripfragmentelevation_label"
+               android:text="@string/trip_abstract_elevation"
+               style="@style/tripAbstractStyle"/>
+
+           <TextView
+               android:id="@+id/tripfragmentelevation_value"
+               android:layout_width="0dp"
+               style="@style/tripAbstractStyle"/>
+       </TableRow>
+
+       <!-- Round trip -->
+       <TableRow
+           android:id="@+id/tripfragmentroundtrip"
+           android:layout_height="wrap_content"
+           android:layout_width="fill_parent">
+
+           <TextView
+               android:id="@+id/tripfragmentroundtrip_label"
+               android:text="@string/trip_abstract_round_trip"
+               style="@style/tripAbstractStyle"/>
+
+           <TextView
+               android:id="@+id/tripfragmentroundtrip_value"
+               style="@style/tripAbstractStyle"/>
+
+       </TableRow>
+
+
+   </TableLayout>
+
+
+
+        <View style="@style/AbstractLineStyle" />
+
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="0"  android:stretchColumns="1" android:background="#ffffffff">
+
+        <!-- Scenery -->
+        <TableRow
+            android:id="@+id/tripfragmentscenery"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent">
+
+            <TextView
+                android:id="@+id/tripfragmentscenery_label"
+                android:text="@string/trip_abstract_scenery"
+                style="@style/tripAbstractStyle"/>
+
+
+            <TextView
+                android:id="@+id/tripfragmentscenery_description"
+                android:layout_width="0dp"
+                style="@style/tripAbstractStyle"/>
+
+        </TableRow>
+
+        <!-- Gear -->
+        <TableRow
+            android:id="@+id/tripfragmentgear"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent">
+
+            <TextView
+                android:id="@+id/tripfragmentgear_label"
+                android:text="@string/trip_abstract_gear"
+                style="@style/tripAbstractStyle"/>
+
+            <TextView
+                android:id="@+id/tripfragmentgear_description"
+                android:layout_width="0dp"
+                style="@style/tripAbstractStyle"/>
+
+        </TableRow>
+
+        <!-- Water -->
+        <TableRow
+            android:id="@+id/tripfragmentwater"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent">
+
+            <TextView
+                android:id="@+id/tripfragmentwater_label"
+                android:text="@string/trip_abstract_water"
+                style="@style/tripAbstractStyle"/>
+
+            <TextView
+                android:id="@+id/tripfragmentwater_description"
+                android:layout_width="0dp"
+                style="@style/tripAbstractStyle"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+        <View style="@style/AbstractLineStyle" />
+
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="0, 1"  android:stretchColumns="2" android:background="#ffffffff">
+
+            <!-- Dog -->
+            <TableRow
+                android:id="@+id/tripfragmentdog"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentdog_label"
+                    android:text="@string/trip_abstract_dog"
+                    style="@style/tripAbstractStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmentdog_code"
+                    style="@style/RatingStyle"/>
+
+                <TextView
+                    android:id="@+id/tripfragmentdog_description"
+                    android:layout_width="0dp"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+
+        </TableLayout>
+
+   </LinearLayout>
+</ScrollView>
+

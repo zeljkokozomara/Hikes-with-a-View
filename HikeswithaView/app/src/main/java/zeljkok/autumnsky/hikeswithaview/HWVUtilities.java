@@ -9,6 +9,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.xeustechnologies.jtar.TarEntry;
 import org.xeustechnologies.jtar.TarInputStream;
 import org.xmlpull.v1.XmlPullParser;
@@ -116,6 +118,61 @@ public class HWVUtilities
         return assetFile;
     }
 
+    public static LatLng gps_from_string(String LAT, String LONG)
+    {
+        // LAT="N49° 28.278'" LONG="W123° 14.106'"
+        double latitude = 0;
+        double longitude = 0;
+
+        // parse lat
+        String parts[] = LAT.split(" ");
+        String deg = parts[0].substring(1, parts[0].length() - 1);
+        String minsec = parts[1].substring(0, parts[1].length() - 1);
+
+        // formula:   degrees +  minutes/60  + seconds/3600
+        latitude = Double.parseDouble(deg) + Double.parseDouble(minsec) / 60;
+
+        if (LAT.charAt(0) == 'S') latitude *= (-1);
+
+        // parse long
+        parts = LONG.split(" ");
+        deg = parts[0].substring(1, parts[0].length() - 1);
+        minsec = parts[1].substring(0, parts[1].length() - 1);
+
+        // formula:   degrees +  minutes/60  + seconds/3600
+        longitude = Double.parseDouble(deg) + Double.parseDouble(minsec) / 60;
+
+        if (LONG.charAt(0) == 'W') longitude *= (-1);
+
+        return new LatLng(latitude, longitude);
+
+    }
+
+    public static TripNotes.Rating readRating(Context c, String tag, String ns, XmlPullParser parser)
+            throws XmlPullParserException, IOException
+    {
+        TripNotes.Rating rating = new TripNotes(c).new Rating();
+        parser.require(XmlPullParser.START_TAG, ns, tag);
+
+        while (parser.next() != XmlPullParser.END_TAG)
+        {
+            if (parser.getEventType() != XmlPullParser.START_TAG)
+                continue;
+
+            String name = parser.getName();
+            if (name.equals(c.getString(R.string.dr_code)))
+                rating.mCode = HWVUtilities.readText(parser);
+
+            else if (name.equals(c.getString(R.string.dr_description)))
+                rating.mDescription = HWVUtilities.readText(parser);
+
+            else
+                HWVUtilities.skipXml(parser);
+        }
+
+
+        return rating;
+    }
 
     public static String readText(XmlPullParser parser) throws IOException, XmlPullParserException
     {
@@ -125,7 +182,13 @@ public class HWVUtilities
             result = parser.getText();
             parser.nextTag();
         }
-        return result;
+
+        // strip from newline at start
+        int i = 0;
+        while (result.charAt(i) == 10)
+            i++;
+
+        return result.substring(i, result.length() - i);
     }
 
     public static void skipXml (XmlPullParser parser) throws XmlPullParserException, IOException

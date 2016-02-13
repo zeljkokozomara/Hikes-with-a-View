@@ -8,10 +8,30 @@
     <string name="progress_regions_download">Downloading Hiking Regions...</string>
     <string name="progress_ratings_download">Downloading Ratings...</string>
 
-    <string name="trip_view_notes_label">Trip Notes</string>
-    <string name="trip_view_gps_label">Map and Waypoints</string>
+    <string name="trip_view_summary_label">Summary</string>
+    <string name="trip_view_notes_label">Notes</string>
+    <string name="trip_view_gps_label">Tracks</string>
     <string name="trip_view_photos_label">Photos</string>
+
+    <string name="trip_summary_label">Description</string>
+    <string name="trip_photo_corner_label">Photo Corner</string>
+    <string name="trip_going_further_label">Going Further</string>
 
     <string name="action_settings">Settings</string>
 
+
+    <!-- Trip Abstract Labels -->
+    <string name="trip_abstract_difficulty">Difficulty</string>
+    <string name="trip_abstract_snow_factor">Snow\nFactor</string>
+    <string name="trip_abstract_trail">Trail/\nMarking</string>
+    <string name="trip_abstract_scenery">Scenery</string>
+    <string name="trip_abstract_elevation">Elevation</string>
+    <string name="trip_abstract_elevation_start">Start: </string>
+    <string name="trip_abstract_elevation_max">Max: </string>
+    <string name="trip_abstract_elevation_total">Total: </string>
+    <string name="trip_abstract_round_trip">Round\nTrip</string>
+    <string name="trip_abstract_time">Suggested\nTime</string>
+    <string name="trip_abstract_gear">Gear</string>
+    <string name="trip_abstract_water">Water</string>
+    <string name="trip_abstract_dog">Dog\nFriendly</string>
 </resources>

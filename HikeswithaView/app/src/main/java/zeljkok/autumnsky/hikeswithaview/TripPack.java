@@ -81,7 +81,7 @@ public class TripPack implements IAssetDownload
 
         // fetch hwv file; we will be notified async on success. We
         // report back to the client only when all downloading/unzipping/xml parsing has completed
-        File assetFile = mTripAsset.handleAssetDownload(strAssetURL, false, this);
+        File assetFile = mTripAsset.handleAssetDownload(strAssetURL, true, this);
         if (null != assetFile)  // was available synchronously
            onDownloadComplete (assetFile, HWVConstants.HWV_SUCCESS);
     }
@@ -146,6 +146,8 @@ public class TripPack implements IAssetDownload
                     mNotes = new TripNotes(m_context);
                     mNotes.loadFromXML(new File(path + File.separator +
                             parser.getAttributeValue(TripPack.xml_ns, m_context.getString(R.string.trip_attribute_file) )) );
+
+                   // mNotes.dump(mTripName);
                 }
                 else if (name.equals( m_context.getString(R.string.trip_garmin) ))
                 {
@@ -158,6 +160,7 @@ public class TripPack implements IAssetDownload
                     mGps.loadFromXML(new File(path + File.separator +
                             parser.getAttributeValue(TripPack.xml_ns, m_context.getString(R.string.trip_attribute_file) )) );
 
+                    // mGps.dump(mTripName);
                 }
 
                 else if (name.equals( m_context.getString(R.string.trip_photos) ))

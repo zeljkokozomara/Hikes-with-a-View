@@ -4,7 +4,7 @@
      No OTHER constants should ever go here -->
 <resources>
 
-    <!-- Difficulty ratings -->
+    <!-- Ratings -->
     <string name="dr_docelem">ratings</string>
     <string name="dr_entry">rating</string>
     <string name="dr_code">code</string>
@@ -35,4 +35,49 @@
     <string name="photos_file">file</string>
     <string name="photos_caption">caption</string>
 
+    <!-- Trip Notes -->
+    <string name="notes_docelem">description</string>
+    <string name="notes_abstract">abstract</string>
+    <string name="notes_summary">summary</string>
+    <string name="notes_photo_corner">photo-corner</string>
+    <string name="notes_going_further">going-further</string>
+
+    <string name="notes_ratings_difficulty">difficulty</string>
+    <string name="notes_ratings_trail">trail</string>
+    <string name="notes_ratings_snow_factor">snow-factor</string>
+
+    <string name="notes_scenery">scenery</string>
+
+    <string name="notes_time">time</string>
+
+    <string name="notes_elevation">elevation</string>
+    <string name="notes_elevation_start">start</string>
+    <string name="notes_elevation_max">max</string>
+    <string name="notes_elevation_total">total</string>
+
+    <string name="notes_distance">distance</string>
+    <string name="notes_gear">gear</string>
+    <string name="notes_water">water</string>
+
+    <string name="notes_dog">dog</string>
+
+    <!-- Trip Gps -->
+    <string name="gps_docelem">gps</string>
+
+    <string name="gps_layout">layout</string>
+    <string name="gps_layout_center">center</string>
+    <string name="gps_layout_zoom">zoom</string>
+    <string name="gps_layout_bearing">bearing</string>
+    <string name="gps_layout_tilt">tilt</string>
+
+    <string name="gps_LAT">LAT</string>
+    <string name="gps_LONG">LONG</string>
+    <string name="gps_ALT">ALT</string>
+    <string name="gps_DIST">DIST</string>
+
+    <string name="gps_waypoints">waypoints</string>
+    <string name="gps_waypoint">waypoint</string>
+    <string name="gps_waypoint_title">title</string>
+    <string name="gps_waypoint_caption">caption</string>
+    <string name="gps_waypoint_icon">icon</string>
 </resources>

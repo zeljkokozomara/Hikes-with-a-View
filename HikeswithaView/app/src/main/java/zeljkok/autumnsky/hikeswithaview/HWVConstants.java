@@ -31,6 +31,9 @@ public class HWVConstants
     public static final int    FLIPPER_SWIPE_MIN_DISTANCE         = 120;
     public static final int    FLIPPER_SWIPE_THRESHOLD_VELOCITY   = 200;
 
+    // google map related
+    public static final int    REGION_MAP_ZOOM                    = 10;
+
     // status codes
     public static final int     HWV_SUCCESS                       =  0;    // generic success
 

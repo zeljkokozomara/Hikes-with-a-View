@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:id="@+id/tripabstract_scroller"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:orientation="vertical" >
+
+        <!-- Description -->
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0" android:background="#ffffffff">
+
+            <TableRow
+                android:id="@+id/tripfragmentsummary1"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentsummary_label"
+                    android:text="@string/trip_summary_label"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tripfragmentsummary2"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentsummary_description"
+                    android:layout_width="0dp"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <View style="@style/AbstractLineStyle" />
+
+        <!-- Photo Corner -->
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0" android:background="#ffffffff">
+
+
+            <TableRow
+                android:id="@+id/tripfragmentphotocorner1"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentphotocorner_label"
+                    android:text="@string/trip_photo_corner_label"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tripfragmentphotocorner2"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentphotocorner_description"
+                    android:layout_width="0dp"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <View style="@style/AbstractLineStyle" />
+
+        <!-- Going Further -->
+        <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0" android:background="#ffffffff">
+
+
+            <TableRow
+                android:id="@+id/tripfragmentgoingfurther1"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentgoingfurther_label"
+                    android:text="@string/trip_going_further_label"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tripfragmentgoingfurther2"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+
+                <TextView
+                    android:id="@+id/tripfragmentgoingfurther_description"
+                    android:layout_width="0dp"
+                    style="@style/tripAbstractStyle"/>
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</ScrollView>

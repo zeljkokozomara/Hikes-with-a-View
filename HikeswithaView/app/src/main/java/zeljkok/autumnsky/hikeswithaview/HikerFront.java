@@ -1,6 +1,7 @@
 package zeljkok.autumnsky.hikeswithaview;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -20,7 +21,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -48,23 +52,10 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hiker_front);
 
-        TripPack tp = new TripPack(this);
-        HWVContext.getInstance().setCurrentTrip(tp);
-        /*checkPermissions();
+        checkPermissions();
 
         getMap();
-        getLocation(); */
-
-
-        try
-        {
-            tp.load("stawamus_backside", "Stawamus Backside",
-                    "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/stawamus-country/stawamus-backside", this);
-        }
-        catch (Exception ex)
-        {
-           Log.e(HIKER_FRONT_TAG, "Exception thrown while trying to load boomlake trip. Cause: " + ex.getLocalizedMessage() );
-        }
+        getLocation();
     }
 
 
@@ -120,6 +111,58 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
     {
         mMap = googleMap;
         showMyLocation();
+
+        setupMap();
+
+    }
+
+    private void setupMap()
+    {
+        if (null == mMap) return;
+
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+
+        final HikerFront ctxt = this;
+        LatLng stawamusbackside = new LatLng(49.695, -123.137);
+        mMap.addMarker(new MarkerOptions().position(stawamusbackside).title("Stawamus Backside").icon(
+                BitmapDescriptorFactory.fromResource(R.drawable.hiking)));
+
+        LatLng harvey = new LatLng(49.475, -123.2014);
+        mMap.addMarker(new MarkerOptions().position(harvey).title("Mt. Harvey").icon(
+                BitmapDescriptorFactory.fromResource(R.drawable.hiking)));
+
+        LatLng pos = new LatLng(49.56, -123.16);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, HWVConstants.REGION_MAP_ZOOM));
+
+        final TripPack tp = new TripPack(this);
+        HWVContext.getInstance().setCurrentTrip(tp);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
+        {
+            @Override
+            public void onInfoWindowClick(Marker marker)
+            {
+                try
+                {
+                    if (marker.getTitle().equals("Stawamus Backside"))
+                    {
+                        tp.load("stawamus_backside", "Stawamus Backside",
+                                "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/stawamus-country/stawamus-backside", ctxt);
+                    }
+                    else if (marker.getTitle().equals("Mt. Harvey"))
+                    {
+                        tp.load("harvey", "Mt. Harvey",
+                                "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/lions-bay/harvey", ctxt);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.e(HIKER_FRONT_TAG, "Exception thrown while trying to load boomlake trip. Cause: " + ex.getLocalizedMessage());
+                }
+            }
+        });
+
     }
 
     // GoogleApiClient.ConnectionCallbacks
