@@ -21,8 +21,63 @@ public class HWVAsset implements IAssetDownload
 
     public enum AssetType
     {
-        REGION, CATALOG, TRIP, RATING
+        REGION, CATALOG, TRIP, RATING;
+        public static String toString(AssetType type)
+        {
+            String ret = "";
+            if (type == AssetType.REGION) ret = "Region";
+            else if (type == AssetType.CATALOG) ret = "Catalog";
+            else if (type == AssetType.TRIP) ret = "Trip";
+            else if (type == AssetType.RATING) ret = "Rating";
+            else assert false : type;
+
+            return ret;
+        }
+
+        public static String AssetSuffix (AssetType type)
+        {
+            String suffix = null;
+
+            if (type == AssetType.CATALOG)
+                suffix = new String(HWVConstants.HWV_CATALOGS_SUFFIX);
+
+            else if (type == AssetType.TRIP)
+                suffix = new String (HWVConstants.HWV_TRIPS_SUFFIX);
+
+            else if (type == AssetType.RATING)
+                suffix = new String (HWVConstants.HWV_RATINGS_SUFFIX);
+
+            else if (type == AssetType.REGION)
+                suffix = new String (HWVConstants.HWV_REGIONS_SUFFIX);
+
+            else assert false : type;
+
+            return suffix;
+        }
+
+        public static int AssetMessage (AssetType type)
+        {
+            int msgid = 0;
+
+            if (type == AssetType.CATALOG)
+                msgid = R.string.progress_catalog_download;
+
+            else if (type == AssetType.TRIP)
+                msgid = R.string.progress_trip_download;
+
+            else if (type == AssetType.RATING)
+                msgid = R.string.progress_ratings_download;
+
+            else if (type == AssetType.REGION)
+                msgid = R.string.progress_regions_download;
+
+            else assert false : type;
+
+            return msgid;
+        }
     };
+
+
 
     private IAssetDownload  mClientCallback = null;
     private DownloadState   mDownloadState;
@@ -40,47 +95,7 @@ public class HWVAsset implements IAssetDownload
     String                  mUpdateLocal = null;      // read from local update file for this asset
     private boolean         mDownloadAsset = false;   // flag indicating if we need to download asset based on update file
 
-    static String AssetSuffix (AssetType type)
-    {
-        String suffix = null;
 
-        if (type == AssetType.CATALOG)
-            suffix = new String(HWVConstants.HWV_CATALOGS_SUFFIX);
-
-        else if (type == AssetType.TRIP)
-            suffix = new String (HWVConstants.HWV_TRIPS_SUFFIX);
-
-        else if (type == AssetType.RATING)
-            suffix = new String (HWVConstants.HWV_RATINGS_SUFFIX);
-
-        else if (type == AssetType.REGION)
-            suffix = new String (HWVConstants.HWV_REGIONS_SUFFIX);
-
-        else assert false : type;
-
-        return suffix;
-    }
-
-    static int AssetMessage (AssetType type)
-    {
-        int msgid = 0;
-
-        if (type == AssetType.CATALOG)
-            msgid = R.string.progress_catalog_download;
-
-        else if (type == AssetType.TRIP)
-            msgid = R.string.progress_trip_download;
-
-        else if (type == AssetType.RATING)
-            msgid = R.string.progress_ratings_download;
-
-        else if (type == AssetType.REGION)
-            msgid = R.string.progress_regions_download;
-
-        else assert false : type;
-
-        return msgid;
-    }
 
     public File handleFolderCreation () throws IOException
     {
@@ -89,7 +104,7 @@ public class HWVAsset implements IAssetDownload
 
         // this is root of user data; there will be some other junk there. So 1st time around
         // make sure we have our root
-        String assetpath = mAssetFolder.getAbsolutePath() + File.separator + HWVAsset.AssetSuffix(mType);
+        String assetpath = mAssetFolder.getAbsolutePath() + File.separator + AssetType.AssetSuffix(mType);
 
         mAssetFolder = new File(assetpath);
         if (mAssetFolder.exists() == false)
@@ -198,7 +213,7 @@ public class HWVAsset implements IAssetDownload
             downloader.mParams.mCallback  = this;
             downloader.mParams.mOutPath   = hwvfile;
             downloader.mParams.mContext   = mContext;
-            downloader.mParams.mMessageId = HWVAsset.AssetMessage(mType);
+            downloader.mParams.mMessageId = AssetType.AssetMessage(mType);
             downloader.mParams.mZipped    = true;
 
             mDownloadState = DownloadState.ASSET;
@@ -259,7 +274,7 @@ public class HWVAsset implements IAssetDownload
             downloader.mParams.mCallback  = this;
             downloader.mParams.mOutPath   = hwvfile;
             downloader.mParams.mContext   = mContext;
-            downloader.mParams.mMessageId = HWVAsset.AssetMessage(mType);
+            downloader.mParams.mMessageId = AssetType.AssetMessage(mType);
             downloader.mParams.mZipped    = true;
 
             mDownloadState = DownloadState.ASSET;
@@ -311,7 +326,7 @@ public class HWVAsset implements IAssetDownload
         downloader.mParams.mCallback  = this;
         downloader.mParams.mOutPath   = hwvfile;
         downloader.mParams.mContext   = mContext;
-        downloader.mParams.mMessageId = HWVAsset.AssetMessage(mType);
+        downloader.mParams.mMessageId = AssetType.AssetMessage(mType);
         downloader.mParams.mZipped    = true;
 
         mDownloadState = DownloadState.ASSET;

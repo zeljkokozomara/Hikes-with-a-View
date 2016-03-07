@@ -4,14 +4,16 @@
     <link href="http://www.garmin.com">
       <text>Garmin International</text>
     </link>
-    <time>2015-12-19T04:16:03Z</time>
+    <time>2016-02-19T07:19:50Z</time>
     <bounds maxlat="49.475449975579977" maxlon="-123.20008495822549" minlat="49.464741004630923" minlon="-123.23509801179171" />
   </metadata>
 
   <wpt lat="49.471307974308729" lon="-123.23509801179171">
     <ele>222.03675799999999</ele>
     <time>2012-10-10T20:36:15Z</time>
-    <name>0 - Lions Bay</name>
+    <name>0 - Lions Trailhead</name>
+    <cmt>Official Lions Trailhead with limited parking at end of Sunset Road</cmt>
+    <desc>Official Lions Trailhead with limited parking at end of Sunset Road</desc>
     <sym>Parking Area</sym>
     <type>user</type>
     <extensions>
@@ -31,6 +33,8 @@
     <ele>505.589966</ele>
     <time>2012-10-10T20:36:15Z</time>
     <name>1 - Brunswick Junction</name>
+    <cmt>Forest trail continues straight for Mt. Brunswick. Continue on logging road to the right</cmt>
+    <desc>Forest trail continues straight for Mt. Brunswick. Continue on logging road to the right</desc>
     <sym>Trail Head</sym>
     <type>user</type>
     <extensions>
@@ -49,7 +53,9 @@
   <wpt lat="49.464814011007547" lon="-123.222347041592">
     <ele>673.23980700000004</ele>
     <time>2012-10-10T20:36:15Z</time>
-    <name>2 - Binkert Junction</name>
+    <name>2 - Harvey Junction</name>
+    <cmt>Binkert trail continues straight. Turn left by the cairn and head up</cmt>
+    <desc>Binkert trail continues straight. Turn left by the cairn and head up</desc>
     <sym>Trail Head</sym>
     <type>user</type>
     <extensions>
@@ -69,8 +75,8 @@
     <ele>1066</ele>
     <time>2012-10-10T20:39:08Z</time>
     <name>3 - Howe Sound Viewpoint</name>
-    <cmt>Semi-open bluff with views of Howe Sound halfway up Harvey Trail. It gets considerably steeper after this</cmt>
-    <desc>Semi-open bluff with views of Howe Sound halfway up Harvey Trail. It gets considerably steeper after this</desc>
+    <cmt>Clearing and superb viewpoint of Howe Sound. Trail ascends more steeply towards Harvey ridge</cmt>
+    <desc>Clearing and superb viewpoint of Howe Sound. Trail ascends more steeply towards Harvey ridge</desc>
     <sym>Scenic Area</sym>
     <type>user</type>
     <extensions>
@@ -90,9 +96,9 @@
     <ele>1365</ele>
     <time>2012-10-10T20:37:19Z</time>
     <name>4 - Lions Viewpoint</name>
-    <cmt>"Surprise" Lions viewpoint after topping out on Harvey Ridge
+    <cmt>Steep trail tops at clearing and surprise Lions viewpoint. Turn left and follow trail up Harvey ridge
 </cmt>
-    <desc>"Surprise" Lions viewpoint after topping out on Harvey Ridge
+    <desc>Steep trail tops at clearing and surprise Lions viewpoint. Turn left and follow trail up Harvey ridge
 </desc>
     <sym>Scenic Area</sym>
     <type>user</type>
@@ -113,6 +119,8 @@
     <ele>1631.4769289999999</ele>
     <time>2012-10-10T20:36:15Z</time>
     <name>5 - Mt. Harvey</name>
+    <cmt>Summit of Mt. Harvey. Return the same way</cmt>
+    <desc>Summit of Mt. Harvey. Return the same way</desc>
     <sym>Summit</sym>
     <type>user</type>
     <extensions>
@@ -130,6 +138,7 @@
 
   <trk>
     <name>Mt. Harvey from Lions Bay</name>
+    <desc>CENTERLAT=N49° 28.044';CENTERLONG=W123° 13.085';ZOOM=14;BEARING=90;TILT=45</desc>
     <extensions>
       <gpxx:TrackExtension>
         <gpxx:DisplayColor>DarkGray</gpxx:DisplayColor>

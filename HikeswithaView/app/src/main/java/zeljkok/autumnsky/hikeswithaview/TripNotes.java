@@ -20,7 +20,7 @@ import java.io.InputStream;
  *
  * XML file must be serialized locally, not as URL
  */
-public class TripNotes implements ITripData
+public class TripNotes implements IHWVContent
 {
     // standard tag for logging
     public static final String TRIP_NOTES_TAG = "HWV.TripNotes";

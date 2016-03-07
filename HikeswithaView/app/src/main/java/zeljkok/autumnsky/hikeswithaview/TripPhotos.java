@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by zeljkok on 22/12/2015.
  */
-public class TripPhotos implements ITripData
+public class TripPhotos implements IHWVContent
 {
     // standard tag for logging
     public static final String TRIP_PHOTOS_TAG = "HWV.TripPhotos";

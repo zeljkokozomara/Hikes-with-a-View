@@ -1,10 +1,10 @@
 package zeljkok.autumnsky.hikeswithaview;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,10 +16,8 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.style.UnderlineSpan;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -61,6 +59,33 @@ public class TripViewActivity extends AppCompatActivity
 
     public static final String TRIP_VIEW_ACTIVITY_TAG = "TripViewActivity";
 
+    protected class TripTabsListener implements ViewPager.OnPageChangeListener
+    {
+        public void 	onPageScrollStateChanged(int state){}
+        public void 	onPageScrolled(int position, float positionOffset, int positionOffsetPixels){}
+        public void 	onPageSelected(int position){showFab(position);}
+
+        private void showFab(int position)
+        {
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+            switch (position)
+            {
+                case TripViewActivity.TAB_SUMMARY_INDEX:
+                case TripViewActivity.TAB_PHOTOS_INDEX:
+                case TripViewActivity.TAB_NOTES_INDEX:
+                    fab.setVisibility(View.GONE);
+                    break;
+
+                case TripViewActivity.TAB_GPS_INDEX:
+                    fab.setVisibility(View.VISIBLE);
+                    break;
+            }
+
+        }
+
+    }
+
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -96,9 +121,14 @@ public class TripViewActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        // setup initial visibility and change listener of "fab" floating button that will be used for
+        // wireless sharing of GPS track (and maybe some other data)
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
+        mViewPager.addOnPageChangeListener(new TripTabsListener());
 
+  /*
 
-  /*      FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -110,7 +140,7 @@ public class TripViewActivity extends AppCompatActivity
         });*/
 
         TripPack tp = HWVContext.getInstance().getCurrentTrip();
-        this.setTitle(tp.getTripCaption());
+        this.setTitle(tp.getTripCaption() );
 
     }
 
@@ -154,18 +184,17 @@ public class TripViewActivity extends AppCompatActivity
             // put waypoint markers on the map
             TripGps gps = HWVContext.getInstance().getCurrentTrip().getGps();
             final List<TripGps.GpsWaypoint> wps = gps.getWaypoints();
+            final List<TripGps.GpsTrekPoint> tpts = gps.getTrekPoints();
 
-            PolylineOptions line = new PolylineOptions();
             for (int i = 0; i < wps.size(); i++)
             {
                 TripGps.GpsWaypoint wp = wps.get(i);
                 mapView.addMarker(new MarkerOptions()
-                        .position(wp.gps)
-                        .title(i + 1 + ". " + wp.title)
+                        .position(wp.tpt.gps)
+                        .title(wp.title)
                         .snippet(wp.caption)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.hiking)));
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.hiking)));  //TODO: Replace with icon based on gpx
 
-                line.add(wp.gps);
             }
 
             mapView.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter()
@@ -179,7 +208,6 @@ public class TripViewActivity extends AppCompatActivity
                 @Override
                 public View getInfoContents(Marker marker)
                 {
-
                     Context context = getActivity();
 
                     LinearLayout info = new LinearLayout(context);
@@ -202,8 +230,15 @@ public class TripViewActivity extends AppCompatActivity
                 }
             });
 
-            // draw polyline connecting waypoints -- crude GPS track
-            // (TODO: improve)
+            // now add all the trekpoints to the line
+            PolylineOptions line = new PolylineOptions();
+            for (int i = 0; i < tpts.size(); i++)
+            {
+                TripGps.GpsTrekPoint tpt = tpts.get(i);
+                line.add(tpt.gps);
+            }
+
+            // finally draw the line which should look exactly like in Garmin!
             line.geodesic(true);
             line.width(8.0f);
             line.color(Color.YELLOW);
@@ -222,7 +257,6 @@ public class TripViewActivity extends AppCompatActivity
 
             mapView.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-
             super.onActivityCreated(savedInstanceState);
         }
 
@@ -236,7 +270,11 @@ public class TripViewActivity extends AppCompatActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState)
         {
-            return super.onCreateView(inflater, container, savedInstanceState);
+          //  View view= inflater.inflate(R.layout.fragment_trip_gps, container, false);
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+
+            return view;
+
         }
 
         @Override
@@ -292,6 +330,7 @@ public class TripViewActivity extends AppCompatActivity
 
             label = (TextView)rootView.findViewById(R.id.tripfragmentgoingfurther_label);
             label.setTypeface(null, Typeface.BOLD);
+
 
             return rootView;
         }
@@ -417,6 +456,7 @@ public class TripViewActivity extends AppCompatActivity
             mFlipper.setFlipInterval(HWVConstants.FLIPPER_SLIDESHOW_INTERVAL);
             mFlipper.startFlipping();   //TODO: manage via user preferences */
 
+
             super.onActivityCreated(savedInstanceState);
         }
 
@@ -426,6 +466,7 @@ public class TripViewActivity extends AppCompatActivity
         {
             View rootView = inflater.inflate(R.layout.fragment_photo_slideshow, container, false);
             mFlipper = (ViewFlipper)rootView.findViewById(R.id.tripflipper);
+
 
             return rootView;
         }
@@ -458,6 +499,7 @@ public class TripViewActivity extends AppCompatActivity
 
         private TextView mRoundTrip;
         private TextView mElevation;
+
 
         public TripAbstractFragment()
         {
@@ -556,6 +598,7 @@ public class TripViewActivity extends AppCompatActivity
             mDogCode.setText(tn.mDog.mCode);
             mDogDescription.setText(tn.mDog.mDescription);
 
+
             // and we are done!
             super.onActivityCreated(savedInstanceState);
         }
@@ -621,6 +664,7 @@ public class TripViewActivity extends AppCompatActivity
             label = (TextView)rootView.findViewById(R.id.tripfragmentdog_label);
             label.setTypeface(null, Typeface.BOLD);
 
+
             return rootView;
         }
     }
@@ -636,11 +680,13 @@ public class TripViewActivity extends AppCompatActivity
             super(fm);
         }
 
+
         @Override
         public Fragment getItem(int position)
         {
             // getItem is called to instantiate the fragment for the given page.
             Fragment frag = null;
+
             switch (position)
             {
                 case TripViewActivity.TAB_SUMMARY_INDEX:
@@ -662,6 +708,7 @@ public class TripViewActivity extends AppCompatActivity
                 default:
                     throw new AssertionError(position);
             }
+
 
             return frag;
         }

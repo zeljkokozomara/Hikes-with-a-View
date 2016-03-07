@@ -4,11 +4,8 @@
     <!-- description: Trip notes. Must always exist -->
     <description file="stawamus_backside_notes.xml"/>
 
-    <!-- garmin.gpx: optional. We don't parse this one -->
-    <garmin file="stawamus_backside.gpx"/>
-
-    <!-- GPS data for our app processing: optional, but present most of the time -->
-    <gps file="stawamus_backside_gps.xml"/>
+    <!-- garmin GPS data we parse with additional bit for UI fragment positioning -->
+    <gps file="stawamus_backside.gpx"/>
 
     <!-- Trip photos. Not mandatory, but must trips should have at least 1 photo -->
     <photos file="stawamus_backside_photos.xml"/>

@@ -18,13 +18,16 @@
     <string name="rg_root">root</string>
 
     <!-- Catalog -->
+    <string name="ct_catalog">catalog</string>
+    <string name="ct_attribute_file">file</string>
+
+    <string name="catalog_docelem">catalog</string>
 
     <!-- Assets -->
     <string name="assets_docelem">assets</string>
 
     <!-- Trip Assets -->
     <string name="trip_description">description</string>
-    <string name="trip_garmin">garmin</string>
     <string name="trip_gps">gps</string>
     <string name="trip_photos">photos</string>
     <string name="trip_attribute_file">file</string>
@@ -62,22 +65,30 @@
     <string name="notes_dog">dog</string>
 
     <!-- Trip Gps -->
-    <string name="gps_docelem">gps</string>
+    <string name="gps_docelem">gpx</string>
 
-    <string name="gps_layout">layout</string>
-    <string name="gps_layout_center">center</string>
-    <string name="gps_layout_zoom">zoom</string>
-    <string name="gps_layout_bearing">bearing</string>
-    <string name="gps_layout_tilt">tilt</string>
+    <string name="gps_layout">desc</string>
+    <string name="gps_layout_token_separator">;</string>
+    <string name="gps_layout_name_value_separator">=</string>
+    <string name="gps_layout_center_lat">CENTERLAT</string>
+    <string name="gps_layout_center_long">CENTERLONG</string>
+    <string name="gps_layout_zoom">ZOOM</string>
+    <string name="gps_layout_bearing">BEARING</string>
+    <string name="gps_layout_tilt">TILT</string>
 
-    <string name="gps_LAT">LAT</string>
-    <string name="gps_LONG">LONG</string>
-    <string name="gps_ALT">ALT</string>
-    <string name="gps_DIST">DIST</string>
 
-    <string name="gps_waypoints">waypoints</string>
-    <string name="gps_waypoint">waypoint</string>
-    <string name="gps_waypoint_title">title</string>
-    <string name="gps_waypoint_caption">caption</string>
-    <string name="gps_waypoint_icon">icon</string>
+    <string name="gps_waypoint">wpt</string>
+    <string name="gps_waypoint_title">name</string>
+    <string name="gps_waypoint_elevation">ele</string>
+    <string name="gps_waypoint_caption">desc</string>
+    <string name="gps_waypoint_icon">sym</string>
+
+    <string name="gps_lat">lat</string>
+    <string name="gps_long">lon</string>
+    <string name="gps_elevation">ele</string>
+
+    <string name="gps_trek">trk</string>
+    <string name="gps_trek_segment">trkseg</string>
+    <string name="gps_trek_point">trkpt</string>
+
 </resources>

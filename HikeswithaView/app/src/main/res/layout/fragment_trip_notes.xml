@@ -78,6 +78,7 @@
                     android:layout_width="0dp"
                     style="@style/tripAbstractStyle"/>
 
+
             </TableRow>
 
         </TableLayout>

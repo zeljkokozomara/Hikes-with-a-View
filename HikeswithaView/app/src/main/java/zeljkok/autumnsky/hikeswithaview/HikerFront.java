@@ -135,8 +135,7 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
         LatLng pos = new LatLng(49.56, -123.16);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, HWVConstants.REGION_MAP_ZOOM));
 
-        final TripPack tp = new TripPack(this);
-        HWVContext.getInstance().setCurrentTrip(tp);
+        final Context c = this;
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
         {
@@ -145,16 +144,23 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
             {
                 try
                 {
+                    TripPack tp = null;
                     if (marker.getTitle().equals("Stawamus Backside"))
                     {
-                        tp.load("stawamus_backside", "Stawamus Backside",
-                                "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/stawamus-country/stawamus-backside", ctxt);
+                        tp = new TripPack(c, "Stawamus Backside");
+                        tp.load("stawamus_backside",
+                                "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/stawamus-country/stawamus-backside",
+                                ctxt, HWVAsset.AssetType.TRIP);
                     }
                     else if (marker.getTitle().equals("Mt. Harvey"))
                     {
-                        tp.load("harvey", "Mt. Harvey",
-                                "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/lions-bay/harvey", ctxt);
+                        tp = new TripPack(c, "Mt. Harvey");
+                        tp.load("harvey",
+                                "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/sea-to-sky/lions-bay/harvey",
+                                ctxt, HWVAsset.AssetType.TRIP);
                     }
+
+                    HWVContext.getInstance().setCurrentTrip(tp);
                 }
                 catch (Exception ex)
                 {
