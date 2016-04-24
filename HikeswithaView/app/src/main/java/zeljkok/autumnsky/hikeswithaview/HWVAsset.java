@@ -82,14 +82,18 @@ public class HWVAsset implements IAssetDownload
     private IAssetDownload  mClientCallback = null;
     private DownloadState   mDownloadState;
     private Context         mContext = null;
+    private String          mAssetCaption = null;
     private String          mAssetName = null;
     private AssetType       mType;
     private File            mAssetFolder = null;
     private String          mAssetURL = null;
 
-    public HWVAsset (Context c, String assetName, AssetType type)
+    public HWVAsset (Context c, String assetName, String assetCaption, AssetType type)
     {
-        mContext = c; mAssetName = new String (assetName); mType = type;
+        mContext = c;
+        mAssetName = new String (assetName);
+        mAssetCaption = new String (assetCaption);
+        mType = type;
     }
 
     String                  mUpdateLocal = null;      // read from local update file for this asset
@@ -112,7 +116,7 @@ public class HWVAsset implements IAssetDownload
 
 
         // Up to HWVConstants.NUM_PERSISTED_ASSETS subfolders
-        assetpath = mAssetFolder.getAbsolutePath() + File.separator + mAssetName;
+        assetpath = mAssetFolder.getAbsolutePath() + File.separator + mAssetCaption;
         Log.d(HWV_ASSET_TAG, "Trip asset Path: " + assetpath);
 
         // enumerate folders in root to see if we have this one
@@ -131,10 +135,10 @@ public class HWVAsset implements IAssetDownload
             if (entry.lastModified() < oldest.lastModified() )
                 oldest = entry;
 
-            if (entry.getName().equalsIgnoreCase(mAssetName) == true)
+            if (entry.getName().equalsIgnoreCase(mAssetCaption) == true)
             {
                 assetFolder = entry;
-                Log.d(HWV_ASSET_TAG, "Asset name: " + mAssetName + " cached before!");
+                Log.d(HWV_ASSET_TAG, "Asset name: " + mAssetCaption + " cached before!");
             }
         }
 
@@ -144,7 +148,7 @@ public class HWVAsset implements IAssetDownload
         {
             if (iEntries >= HWVConstants.NUM_PERSISTED_ASSETS)
             {
-                Log.d(HWV_ASSET_TAG, "Deleting asset folder: " + oldest.getAbsolutePath() + " to make space for: " + mAssetName);
+                Log.d(HWV_ASSET_TAG, "Deleting asset folder: " + oldest.getAbsolutePath() + " to make space for: " + mAssetCaption);
                 oldest.delete();
             }
 

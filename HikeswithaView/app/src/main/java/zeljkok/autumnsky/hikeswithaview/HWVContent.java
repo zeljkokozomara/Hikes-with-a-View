@@ -16,16 +16,23 @@ public abstract class HWVContent implements IAssetDownload
     // standard tag for logging
     public static final String HWV_CONTENT_TAG = "HWV.HWVContent";
 
-    protected Context      m_context = null;
+    protected Context    m_context = null;
 
     private HWVAsset     mContentAsset   = null;   // handles all the network & local file system stuff
     private IAssetStatus mClientCallback = null;   // client callback invoked when content is ready
 
-    private String       mContentName    = null;
+    protected String       mContentName    = null;
+    protected String       mContentCaption = null;
+    public    String       getContentCaption(){return mContentCaption;}
+
     private HWVAsset.AssetType mType     = null;
 
 
-    public  HWVContent(Context c){m_context = c;}
+    public  HWVContent(Context c, String captionName)
+    {
+        m_context = c;
+        mContentCaption = new String(captionName);
+    }
 
     // public export to load particular content
     public void load(String contentName, String strAssetURL, IAssetStatus callback, HWVAsset.AssetType assetType)
@@ -33,7 +40,7 @@ public abstract class HWVContent implements IAssetDownload
         mClientCallback = callback;
         mContentName    = new String(contentName);
 
-        mContentAsset = new HWVAsset(m_context, contentName, assetType);
+        mContentAsset = new HWVAsset(m_context, mContentName, mContentCaption, assetType);
         mType = assetType;
 
         // ensure we have asset folder
@@ -51,7 +58,7 @@ public abstract class HWVContent implements IAssetDownload
 
         // fetch hwv file; we will be notified async on success. We
         // report back to the client only when all downloading/unzipping/xml parsing has completed
-        File contentFile = mContentAsset.handleAssetDownload(strAssetURL, false, this);
+        File contentFile = mContentAsset.handleAssetDownload(strAssetURL, true, this);
         if (null != contentFile)  // was available synchronously
             onDownloadComplete (contentFile, HWVConstants.HWV_SUCCESS);
     }

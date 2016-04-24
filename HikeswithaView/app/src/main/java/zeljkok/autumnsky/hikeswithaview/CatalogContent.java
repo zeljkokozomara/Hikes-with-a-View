@@ -1,6 +1,7 @@
 package zeljkok.autumnsky.hikeswithaview;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -37,6 +38,7 @@ public class CatalogContent implements IHWVContent
     public void loadFromXML (File catalogFile)  throws XmlPullParserException, IOException
     {
         InputStream in = new FileInputStream(catalogFile);
+
         try
         {
             XmlPullParser parser = Xml.newPullParser();
@@ -46,6 +48,13 @@ public class CatalogContent implements IHWVContent
 
             parser.require(XmlPullParser.START_TAG, CatalogContent.xml_ns,
                     m_context.getString(R.string.catalog_docelem));
+
+            // read the region name and version
+            // TODO: Make use of this info; right now I'm just reading it
+            //       -- region name must match how we've been configured by the caller
+            //       -- version is for future structural changes
+            String region = parser.getAttributeValue(CatalogContent.xml_ns, m_context.getString(R.string.catalog_docelem_region));
+            String version = parser.getAttributeValue(CatalogContent.xml_ns, m_context.getString(R.string.catalog_docelem_version));
 
             while (parser.next() != XmlPullParser.END_TAG)
             {

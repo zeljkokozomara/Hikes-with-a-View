@@ -2,6 +2,6 @@
 <assets region="bc-coast_mountains">
 
     <!-- catalog -->
-    <catalog file="bc-coast_mountains.xml"/>
+    <catalog file="bc-coast_catalog.xml"/>
 
 </assets>

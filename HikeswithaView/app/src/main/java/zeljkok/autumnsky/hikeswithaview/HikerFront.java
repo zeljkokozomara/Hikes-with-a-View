@@ -44,6 +44,7 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
     private Location mLastLocation = null;
     private LocationRequest mLocationRequest = null;
 
+    private HWVCatalog  mCatalog = null;
     private int mLocationAware = 0;
 
     @Override
@@ -112,8 +113,20 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
         mMap = googleMap;
         showMyLocation();
 
+        // load the catalog
+        loadCatalog ();
         setupMap();
 
+
+
+    }
+
+    public void loadCatalog ()
+    {
+        mCatalog = new HWVCatalog(this, "BC Coast Mountains");
+        mCatalog.load("bc-coast_catalog",
+                "https://sites.google.com/site/hikeswithaview/bc-coast-mountains/",
+                this, HWVAsset.AssetType.CATALOG);
     }
 
     private void setupMap()
@@ -274,8 +287,17 @@ public class HikerFront extends FragmentActivity implements OnMapReadyCallback,
         }
         Toast.makeText(this, strPhotos, Toast.LENGTH_SHORT).show(); */
 
-        Intent intent = new Intent(this, TripViewActivity.class);
-        startActivity(intent);
+        if (type == HWVAsset.AssetType.TRIP)
+        {
+            Intent intent = new Intent(this, TripViewActivity.class);
+            startActivity(intent);
+        }
+        else if (type == HWVAsset.AssetType.CATALOG)
+        {
+            // populate map with hiking sections
+            Toast.makeText(this, "Catalog: " + assetName +
+                    " loaded OK", Toast.LENGTH_LONG).show();
+        }
 
 
     }

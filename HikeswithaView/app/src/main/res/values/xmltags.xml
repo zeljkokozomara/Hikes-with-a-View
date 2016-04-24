@@ -22,6 +22,8 @@
     <string name="ct_attribute_file">file</string>
 
     <string name="catalog_docelem">catalog</string>
+    <string name="catalog_docelem_region">region</string>
+    <string name="catalog_docelem_version">version</string>
 
     <!-- Assets -->
     <string name="assets_docelem">assets</string>

@@ -140,7 +140,7 @@ public class TripViewActivity extends AppCompatActivity
         });*/
 
         TripPack tp = HWVContext.getInstance().getCurrentTrip();
-        this.setTitle(tp.getTripCaption() );
+        this.setTitle(tp.getContentCaption() );
 
     }
 

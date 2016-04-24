@@ -27,7 +27,11 @@ public class HWVCatalog extends HWVContent
     // assets.xml doesn't use namespaces
     private static final String xml_ns = null;
 
-    public HWVCatalog(Context c) {super(c);}
+    public HWVCatalog(Context c, String strRegionName)
+    {
+        super(c, strRegionName);
+    }
+
 
     CatalogContent mContent = new CatalogContent(m_context);
 

@@ -33,13 +33,9 @@ public class TripPack extends HWVContent
     private TripGps    mGps    = null;            // GPS is optional
     private TripPhotos mPhotos = null;            // photos are optional
 
-    private String     mTripCaption = null;
-    public  String     getTripCaption(){return mTripCaption;}
-
     public TripPack(Context c, String tripCaption)
     {
-        super(c);
-        mTripCaption = new String(tripCaption);
+        super(c, tripCaption);
     }
 
     public TripPhotos getPhotos(){return mPhotos;}
